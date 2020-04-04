@@ -3,7 +3,11 @@ from pydantic import BaseModel
 import uvicorn
 import requests
 
+import Auth.Auth as AuthModel
+
 app = FastAPI()
+
+Auth = AuthModel.Auth()
 
 class LoginUser(BaseModel):
     email : str
@@ -21,32 +25,15 @@ def root():
     }
 @app.post("/register")
 def register(user:RegisterUser):
-    data = {
-        "email" : user.email,
-        "password" : user.password,
-        "username" : user.username,
-        "phone" : user.phonenumber
-    }
-    result = requests.post('http://localhost:1337/auth/local/register', data=data)
-    print(result)
-    return {
-        "Hello world"
-    }
+
+    data = Auth.register(user)
+    return data
 
 @app.post("/login")
 def login(user:LoginUser):
 
-    Data = {
-        "identifier" : user.email,
-        "password" : user.password
-    }
-
-    result = requests.post('http://localhost:1337/auth/local', data=Data)
-    print(result)
-
-    return {
-        "Login Sucess"
-    }
+    data = Auth.login(user)
+    return data
 
 if __name__=="__main__":
-    uvicorn.run("main:app", host="127.0.0.1", port="8000", log_level='info', access_log=False)
+    uvicorn.run("main:app", host="0.0.0.0", port="3000", log_level='info', access_log=False)
