@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-
+import uvicorn
 import requests
 
 app = FastAPI()
@@ -14,7 +14,11 @@ class RegisterUser(BaseModel):
     password : str
     username : str
     phone : str
-
+@app.get("/root")
+def root():
+    return {
+        "Hello world"
+    }
 @app.post("/register")
 def register(user:RegisterUser):
     data = {
@@ -43,3 +47,6 @@ def login(user:LoginUser):
     return {
         "Login Sucess"
     }
+
+if __name__=="__main__":
+    uvicorn.run("main:app", host="127.0.0.1", port="8000", log_level='info', access_log=False)
