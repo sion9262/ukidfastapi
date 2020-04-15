@@ -18,6 +18,7 @@ class RegisterUser(BaseModel):
     password : str
     username : str
     phone : str
+
 @app.get("/root")
 def root():
     return {
@@ -31,7 +32,7 @@ def register(user:RegisterUser):
 
 @app.post("/login")
 def login(user:LoginUser):
-
+    print(user)
     data = Auth.login(user)
     return data
 

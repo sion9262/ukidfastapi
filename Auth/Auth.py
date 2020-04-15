@@ -1,8 +1,16 @@
 import json
+import traceback
+
 import requests
 
 class Auth:
-
+    def __init__(self):
+        self.dataObject = {
+            "resultCode": 500,
+            "jwt": "",
+            "username": "",
+            "email": ""
+        }
     def login(self, user):
 
         Data = {
@@ -13,19 +21,20 @@ class Auth:
 
         try:
             result = requests.post('http://localhost:1337/auth/local', data=Data)
-            resultCode = result.status_code
-            resultData = json.dumps(result.text)
+
+            if (result.status_code == 200) :
+                resultData = result.json()
+
+                self.dataObject["resultCode"] = result.status_code
+                self.dataObject["jwt"] = resultData["jwt"]
+                self.dataObject["username"] = resultData["user"]["username"]
+                self.dataObject["email"] = resultData["user"]["email"]
 
         except:
-            resultCode = 500
-            resultData = ""
+            print(traceback.format_exc())
+            pass
 
-        data = {
-            "resultCode" : resultCode,
-            "resultData" : resultData
-        }
-
-        return data
+        return self.dataObject
 
     def register(self, user):
         Data = {
@@ -36,17 +45,18 @@ class Auth:
         }
         try:
             result = requests.post('http://localhost:1337/auth/local/register', data=Data)
-            print(result)
-            resultCode = result.status_code
-            resultData = json.dumps(result.text)
+
+            if (result.status_code == 200) :
+                resultData = result.json()
+
+                self.dataObject["resultCode"] = result.status_code
+                self.dataObject["jwt"] = resultData["jwt"]
+                self.dataObject["username"] = resultData["user"]["username"]
+                self.dataObject["email"] = resultData["user"]["email"]
+
 
         except:
-            resultCode = 500
-            resultData = ""
+            print(traceback.format_exc())
+            pass
 
-
-        data = {
-            "resultCode": resultCode,
-            "resultData": resultData
-        }
-        return data
+        return self.dataObject
