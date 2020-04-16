@@ -23,6 +23,7 @@ class Auth:
                 dataObject["jwt"] = resultData["jwt"]
                 dataObject["username"] = resultData["user"]["username"]
                 dataObject["email"] = resultData["user"]["email"]
+                dataObject["setUserInfo"] = resultData["user"]["setUserInfo"]
 
         except:
             print(traceback.format_exc())
@@ -49,7 +50,7 @@ class Auth:
                 dataObject["jwt"] = resultData["jwt"]
                 dataObject["username"] = resultData["user"]["username"]
                 dataObject["email"] = resultData["user"]["email"]
-
+                dataObject["setUserInfo"] = resultData["user"]["setUserInfo"]
 
         except:
             print(traceback.format_exc())
@@ -62,6 +63,7 @@ class Auth:
             "resultCode": 500,
             "jwt": "",
             "username": "",
-            "email": ""
+            "email": "",
+            "setUserInfo" : ""
         }
         return  dataObject
