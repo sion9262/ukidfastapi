@@ -35,13 +35,14 @@ class Auth:
         Data = {
             "email": user.email,
             "password": user.password,
-            "phone": user.phone
+            "phone": user.phone,
+            "username" : ""
         }
 
         dataObject = self.getObject()
         try:
             result = requests.post('http://localhost:1337/auth/local/register', data=Data)
-
+            print(result)
             if (result.status_code == 200) :
                 resultData = result.json()
 
