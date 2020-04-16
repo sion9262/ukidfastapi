@@ -35,7 +35,6 @@ class Auth:
         Data = {
             "email": user.email,
             "password": user.password,
-            "username": user.username,
             "phone": user.phone
         }
 

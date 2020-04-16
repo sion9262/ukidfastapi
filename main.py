@@ -16,7 +16,6 @@ class LoginUser(BaseModel):
 class RegisterUser(BaseModel):
     email : str
     password : str
-    username : str
     phone : str
 
 @app.get("/root")
