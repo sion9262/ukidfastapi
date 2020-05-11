@@ -57,6 +57,28 @@ class Auth:
             pass
 
         return dataObject
+    def setUser(self, user):
+
+        Data = {
+            "username" : user.name,
+            "age" : user.age,
+            "language" : user.language,
+            "math" : user.math,
+            "place" : user.place,
+            "physical" : user.physical,
+            "music" : user.music,
+            "relationship" : user.relationship,
+            "personal" : user.personal,
+            "nature" : user.nature
+        }
+        print(user.token)
+        try:
+            result = requests.get('http://localhost:1337/users/@me?token='+user.token)
+            print(result)
+
+        except:
+            pass
+
 
     def getObject(self):
         dataObject = {
