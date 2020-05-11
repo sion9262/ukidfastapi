@@ -24,6 +24,7 @@ class Auth:
                 dataObject["username"] = resultData["user"]["username"]
                 dataObject["email"] = resultData["user"]["email"]
                 dataObject["setUserInfo"] = resultData["user"]["setUserInfo"]
+                dataObject["id"] = resultData["user"]["id"]
 
         except:
             print(traceback.format_exc())
@@ -51,6 +52,7 @@ class Auth:
                 dataObject["username"] = resultData["user"]["username"]
                 dataObject["email"] = resultData["user"]["email"]
                 dataObject["setUserInfo"] = resultData["user"]["setUserInfo"]
+                dataObject["id"] = resultData["user"]["id"]
 
         except:
             print(traceback.format_exc())
@@ -72,6 +74,9 @@ class Auth:
             "nature" : user.nature
         }
         print(user.token)
+        dataObject = {
+            "resultCode" : 500
+        }
         try:
             result = requests.get('http://localhost:1337/users/@me?token='+user.token)
             print(result)
@@ -79,10 +84,13 @@ class Auth:
         except:
             pass
 
+        return dataObject;
+
 
     def getObject(self):
         dataObject = {
             "resultCode": 500,
+            "id" : "",
             "jwt": "",
             "username": "",
             "email": "",
