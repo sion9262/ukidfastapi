@@ -30,6 +30,7 @@ class setUser(BaseModel):
     personal: int
     nature: int
     token : str
+    id : str
 
 @app.get("/root")
 def root():

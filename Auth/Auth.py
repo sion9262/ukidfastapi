@@ -78,7 +78,7 @@ class Auth:
             "resultCode" : 500
         }
         try:
-            result = requests.get('http://localhost:1337/users/@me?token='+user.token)
+            result = requests.get('http://localhost:1337/users/'+user.id)
             print(result)
 
         except:
