@@ -73,13 +73,14 @@ class Auth:
             "personal" : user.personal,
             "nature" : user.nature
         }
-        print(user.token)
+
         dataObject = {
             "resultCode" : 500
         }
         try:
-            result = requests.get('http://localhost:1337/users/'+user.id)
-            print(result)
+            result = requests.put('http://localhost:1337/users/'+user.id, data=Data)
+            dataObject["resultCode"] = result.status_code;
+
 
         except:
             pass
@@ -96,4 +97,4 @@ class Auth:
             "email": "",
             "setUserInfo" : ""
         }
-        return  dataObject
+        return dataObject

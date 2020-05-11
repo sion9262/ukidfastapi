@@ -51,7 +51,7 @@ def login(user:LoginUser):
 @app.post("/setupuser")
 def setupuser(user:setUser):
     data = Auth.setUser(user)
-
+    return data
 @app.get("/movies")
 def movies():
     print('zzzz')
