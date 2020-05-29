@@ -71,7 +71,8 @@ class Auth:
             "music" : user.music,
             "relationship" : user.relationship,
             "personal" : user.personal,
-            "nature" : user.nature
+            "nature" : user.nature,
+            "setUserInfo" : 1
         }
 
         dataObject = {

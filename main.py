@@ -4,11 +4,11 @@ import uvicorn
 import requests
 
 import Auth.Auth as AuthModel
-
+import Util.Movies as MoviesModel
 app = FastAPI()
 
 Auth = AuthModel.Auth()
-
+Movies = MoviesModel.Movies()
 class LoginUser(BaseModel):
     email : str
     password : str
@@ -54,9 +54,11 @@ def setupuser(user:setUser):
     return data
 @app.get("/movies")
 def movies():
-    print('zzzz')
+    data = Movies.getMovieData()
+    return data
 @app.get("/movies/{category}")
 def movies(category : str):
-    print(category)
+    data = Movies.getCategoryData(category)
+    return data
 if __name__=="__main__":
     uvicorn.run("main:app", host="0.0.0.0", port="3000", log_level='info', access_log=False)
