@@ -39,10 +39,8 @@ class Movies:
             if datas.status_code == 200:
                 datas = datas.json()
 
-                movies, category = self.urlProcess(datas)
-                dataObject["resultCode"] = 200
-                dataObject["movies"] = movies
-                dataObject["category"] = category
+                dataObject = self.urlProcess(datas)
+
         except:
             pass
 
@@ -57,10 +55,8 @@ class Movies:
 
             if datas.status_code == 200:
                 datas = datas.json()
-                movies, category = self.urlProcess(datas)
-                dataObject["resultCode"] = 200
-                dataObject["movies"] = movies
-                dataObject["category"] = category
+                dataObject = self.urlProcess(datas)
+     
         except:
             pass
         return dataObject
@@ -71,20 +67,26 @@ class Movies:
         return count
 
     def urlProcess(self, datas):
-        movies = []
-        category = []
+
+        movieObjects = self.getObject()
+        movieObjects["resultCode"] = 200
 
         for data in datas:
-            movies.append(data['movieURL'].replace("https://www.youtube.com/watch?v=", ""))
-            category.append(data['category'])
-
-        return movies, category
+            mObject = {
+                "movieId": "",
+                "title": "",
+                "category": ""
+            }
+            mObject["movieId"] = data['movieURL'].replace("https://www.youtube.com/watch?v=", "")
+            mObject["title"] = data['title']
+            mObject["category"] = data['category']
+            movieObjects["moviesObject"].append(mObject)
+        return movieObjects
     def getObject(self):
 
         object = {
             "resultCode" : 500,
-            "movies" : [],
-            "category" : []
+            "moviesObject" : []
         }
         return object
 if __name__=="__main__":
