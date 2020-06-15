@@ -51,12 +51,12 @@ class Movies:
         #추후 항목별 동영상 갯수에 따른 랜덤값 부여
         dataObject = self.getObject()
         try:
-            datas = requests.get(self.url+"movies?category="+category)
+            datas = requests.get(self.url+"movies?category_in="+category)
 
             if datas.status_code == 200:
                 datas = datas.json()
                 dataObject = self.urlProcess(datas)
-     
+
         except:
             pass
         return dataObject
