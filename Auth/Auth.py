@@ -25,6 +25,15 @@ class Auth:
                 dataObject["email"] = resultData["user"]["email"]
                 dataObject["setUserInfo"] = resultData["user"]["setUserInfo"]
                 dataObject["id"] = resultData["user"]["id"]
+                dataObject["age"] = resultData["user"]["age"]
+                dataObject["language"] = resultData["user"]["language"]
+                dataObject["math"] = resultData["user"]["math"]
+                dataObject["place"] = resultData["user"]["place"]
+                dataObject["physical"] = resultData["user"]["physical"]
+                dataObject["music"] = resultData["user"]["music"]
+                dataObject["relationship"] = resultData["user"]["relationship"]
+                dataObject["personal"] = resultData["user"]["personal"]
+                dataObject["nature"] = resultData["user"]["nature"]
 
         except:
             print(traceback.format_exc())
@@ -52,7 +61,8 @@ class Auth:
                 dataObject["username"] = resultData["user"]["username"]
                 dataObject["email"] = resultData["user"]["email"]
                 dataObject["setUserInfo"] = resultData["user"]["setUserInfo"]
-                dataObject["id"] = resultData["user"]["id"]
+
+
 
         except:
             print(traceback.format_exc())
@@ -96,6 +106,15 @@ class Auth:
             "jwt": "",
             "username": "",
             "email": "",
-            "setUserInfo" : ""
+            "setUserInfo" : "",
+            "age" : 0,
+            "language" : 0,
+            "math" : 0,
+            "place" : 0,
+            "physical" : 0,
+            "music" : 0,
+            "relationship" : 0,
+            "personal" : 0,
+            "nature" : 0
         }
         return dataObject
