@@ -61,23 +61,33 @@ class Movies:
             pass
         return dataObject
 
+
     def postUserMoives(self, movies):
         # 사용자가 시청한 무비 보내기
         print(movies)
+        data = {
+            "user" : movies.user,
+            "movieID" : movies.movieID
+            "movieCategory" : movies.movieCategory,
+            "movieTitle" : movies.movieTitle,
+            "playDate" : movies.playDate,
+            "playTIme" : movies.playTime
+        }
         try:
-            datas = requests.post(self.url+"userplaymovies", data=movies)
+            datas = requests.post(self.url+"userplaymovies", data=data)
 
             if datas.status_code == 200 :
                 return {
                     "ResultCode" : 200
                 }
-            else :
-                return {
-                    "ResultCode" : 500
-                }
+
+
         except:
             pass
 
+        return {
+            "ResultCode": 500
+        }
     def randomProcess(self):
         count = random.randint(1, self.moviesCount)
         print(count)
