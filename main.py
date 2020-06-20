@@ -68,9 +68,11 @@ def movies():
 def movies(category : str):
     data = Movies.getCategoryData(category)
     return data
-@app.post("/userPlayMovies")
-def userPlayMovies(playMovie:UserMovies):
-    data = Movies.postUserMoives(playMovie)
+
+@app.post("/userplaymovie")
+def userplaymovie(playmovie:UserMovies):
+    data = Movies.postUserMoives(playmovie)
     return data
+
 if __name__=="__main__":
     uvicorn.run("main:app", host="0.0.0.0", port="3000", log_level='info', access_log=False)
