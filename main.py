@@ -32,6 +32,14 @@ class setUser(BaseModel):
     token : str
     id : str
 
+class UserMovies(BaseModel):
+    user = str
+    movieID = str
+    movieTitle = str
+    movieCategory = str
+    playDate = str
+    playTime = str
+
 @app.get("/root")
 def root():
     return {
@@ -59,6 +67,10 @@ def movies():
 @app.get("/movies/{category}")
 def movies(category : str):
     data = Movies.getCategoryData(category)
+    return data
+@app.post("/userPlayMovies")
+def userPlayMovies(playMovie:UserMovies):
+    data = Movies.postUserMoives(playMovie)
     return data
 if __name__=="__main__":
     uvicorn.run("main:app", host="0.0.0.0", port="3000", log_level='info', access_log=False)
