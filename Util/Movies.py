@@ -63,7 +63,7 @@ class Movies:
 
     def postUserMoives(self, movies):
         # 사용자가 시청한 무비 보내기
-
+        print(movies)
         try:
             datas = requests.post(self.url+"userplaymovies", data=movies)
 
