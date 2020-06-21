@@ -21,6 +21,7 @@ class Auth:
 
                 dataObject["resultCode"] = result.status_code
                 dataObject["jwt"] = resultData["jwt"]
+                dataObject["gender"] = resultData["user"]["gender"]
                 dataObject["username"] = resultData["user"]["username"]
                 dataObject["email"] = resultData["user"]["email"]
                 dataObject["setUserInfo"] = resultData["user"]["setUserInfo"]
@@ -82,7 +83,8 @@ class Auth:
             "relationship" : user.relationship,
             "personal" : user.personal,
             "nature" : user.nature,
-            "setUserInfo" : 1
+            "setUserInfo" : 1,
+            "gender" : user.gender
         }
 
         dataObject = {
@@ -104,6 +106,7 @@ class Auth:
             "resultCode": 500,
             "id" : "",
             "jwt": "",
+            "gender" : "",
             "username": "",
             "email": "",
             "setUserInfo" : "",

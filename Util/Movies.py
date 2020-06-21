@@ -67,7 +67,7 @@ class Movies:
         print(movies)
         data = {
             "user" : movies.user,
-            "movieID" : movies.movieID
+            "movieID" : movies.movieID,
             "movieCategory" : movies.movieCategory,
             "movieTitle" : movies.movieTitle,
             "playDate" : movies.playDate,
@@ -78,7 +78,7 @@ class Movies:
 
             if datas.status_code == 200 :
                 return {
-                    "ResultCode" : 200
+                    "resultCode" : 200
                 }
 
 
@@ -86,7 +86,7 @@ class Movies:
             pass
 
         return {
-            "ResultCode": 500
+            "resultCode": 500
         }
     def randomProcess(self):
         count = random.randint(1, self.moviesCount)

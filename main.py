@@ -31,6 +31,7 @@ class setUser(BaseModel):
     nature: int
     token : str
     id : str
+    gender : str
 
 class UserMovies(BaseModel):
     user : str
