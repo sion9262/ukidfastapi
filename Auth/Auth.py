@@ -95,11 +95,49 @@ class Auth:
             dataObject["resultCode"] = result.status_code;
 
 
+
         except:
             pass
 
         return dataObject;
 
+    def userplaymovies(self, user):
+        dataObject = {
+            "resultCode" : 500,
+            "movieData" : [],
+            "movieCount" : ""
+        }
+        try:
+            result = requests.get(
+                'http://localhost:1337/userplaymovies/count?user=' + user)
+            if result.status_code == 200:
+                dataObject["movieCount"] = result.text
+        except:
+            pass
+        #리턴되는 값은 500개 이하
+        try:
+            result = requests.get('http://localhost:1337/userplaymovies?_sort=PlayDate:DESC&user='+user + "&_limit=500")
+            if result.status_code == 200 :
+                datas = result.json()
+
+                dataObject["resultCode"] = 200
+                object = {
+                    "movieID": "",
+                    "movieTitle": "",
+                    "movieCategory": "",
+                    "playDate": "",
+                    "playTime": ""
+                }
+                for data in datas:
+                    object["movieID"] = data["movieID"]
+                    object["movieTitle"] = data["movieTitle"]
+                    object["movieCategory"] = data["movieCategory"]
+                    object["playDate"] = data["playDate"]
+                    object["playTime"] = data["playTime"]
+                    dataObject["movieData"].append(object)
+        except:
+            pass
+        return dataObject
 
     def getObject(self):
         dataObject = {
