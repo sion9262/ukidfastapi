@@ -104,8 +104,9 @@ class Movies:
                 "title": "",
                 "category": ""
             }
+          
             mObject["movieId"] = data['movieURL'].replace("https://www.youtube.com/watch?v=", "")
-            mObject["movieId"] = data['movieURL'].replace("https://www.youtubekids.com/watch?v=", "")
+            mObject["movieId"] = mObject["movieId"].replace("https://www.youtubekids.com/watch?v=", "")
             mObject["title"] = data['title']
             mObject["category"] = data['category']
             movieObjects["moviesObject"].append(mObject)
