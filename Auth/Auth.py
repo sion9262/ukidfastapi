@@ -121,14 +121,15 @@ class Auth:
                 datas = result.json()
 
                 dataObject["resultCode"] = 200
-                object = {
-                    "movieID": "",
-                    "movieTitle": "",
-                    "movieCategory": "",
-                    "playDate": "",
-                    "playTime": ""
-                }
+
                 for data in datas:
+                    object = {
+                        "movieID": "",
+                        "movieTitle": "",
+                        "movieCategory": "",
+                        "playDate": "",
+                        "playTime": ""
+                    }
                     object["movieID"] = data["movieID"]
                     object["movieTitle"] = data["movieTitle"]
                     object["movieCategory"] = data["movieCategory"]
