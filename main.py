@@ -17,6 +17,8 @@ class RegisterUser(BaseModel):
     email : str
     password : str
     phone : str
+    address : str
+    sedaeju : bool
 
 class setUser(BaseModel):
     name: str

@@ -18,7 +18,8 @@ class Auth:
 
             if (result.status_code == 200) :
                 resultData = result.json()
-
+                dataObject["address"] = resultData["user"]["address"]
+                dataObject["sedaeju"] = resultData["user"]["sedaeju"]
                 dataObject["resultCode"] = result.status_code
                 dataObject["jwt"] = resultData["jwt"]
                 dataObject["gender"] = resultData["user"]["gender"]
@@ -47,6 +48,8 @@ class Auth:
             "email": user.email,
             "password": user.password,
             "phone": user.phone,
+            "address" : user.address,
+            "sedaeju" : user.sedaeju,
             "username" : ""
         }
 
@@ -157,6 +160,8 @@ class Auth:
             "music" : 0,
             "relationship" : 0,
             "personal" : 0,
-            "nature" : 0
+            "nature" : 0,
+            "address" : "",
+            "sedaeju" : False
         }
         return dataObject
