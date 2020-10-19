@@ -19,7 +19,7 @@ class Auth:
             if (result.status_code == 200) :
                 resultData = result.json()
                 dataObject["address"] = resultData["user"]["address"]
-                dataObject["sedaeju"] = resultData["user"]["sedaeju"]
+               
                 dataObject["resultCode"] = result.status_code
                 dataObject["jwt"] = resultData["jwt"]
                 dataObject["gender"] = resultData["user"]["gender"]
@@ -49,14 +49,14 @@ class Auth:
             "password": user.password,
             "phone": user.phone,
             "address" : user.address,
-            "sedaeju" : user.sedaeju,
+            "name" : user.name, 
             "username" : ""
         }
 
         dataObject = self.getObject()
         try:
             result = requests.post('http://localhost:1337/auth/local/register', data=Data)
-            print(result)
+            print(result.json())
             if (result.status_code == 200) :
                 resultData = result.json()
 
@@ -162,6 +162,6 @@ class Auth:
             "personal" : 0,
             "nature" : 0,
             "address" : "",
-            "sedaeju" : False
+            "name" : "" 
         }
         return dataObject
