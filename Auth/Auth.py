@@ -73,6 +73,27 @@ class Auth:
             pass
 
         return dataObject
+
+    def visit(self, visitor):
+        data = {
+            "visitAddress": visitor.visitAddress,
+            "carNumber": visitor.carNumber,
+            "visitorName": visitor.visitorName,
+            "visitorNumber": visitor.visitorNumber,
+            "visitorPurpose": visitor.visitorPurpose,
+            "visitDate": visitor.visitDate,
+            "visitorPicture": visitor.visitorPicture
+        }
+        dataObject = {
+            "resultCode": 500
+        }
+        try:
+            result = requests.post('http://localhost:1337/visitors/', data=data)
+            dataObject["resultCode"] = result.status_code
+        except:
+            pass
+        return dataObject
+
     def setUser(self, user):
 
         Data = {
@@ -95,7 +116,7 @@ class Auth:
         }
         try:
             result = requests.put('http://localhost:1337/users/'+user.id, data=Data)
-            dataObject["resultCode"] = result.status_code;
+            dataObject["resultCode"] = result.status_code
 
 
 

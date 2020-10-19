@@ -43,6 +43,15 @@ class UserMovies(BaseModel):
     playDate : str
     playTime : str
 
+class Visitor(BaseModel):
+    visitAddress: str
+    carNumber: str
+    visitorName: str
+    visitorNumber: str
+    visitorPurpose: str
+    visitDate: str
+    visitorPicture: str
+
 @app.get("/root")
 def root():
     return {
@@ -80,6 +89,10 @@ def movies(category : str):
 @app.get("/userplaymovies/{user}")
 def userplaymovies(user : str):
     data = Auth.userplaymovies(user)
+    return data
+@app.post("/visitor")
+def visitor(visitor: Visitor):
+    data = Auth.visit(visitor)
     return data
 
 if __name__=="__main__":
